@@ -1,0 +1,23 @@
+[project]
+name = "chats-creator"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "TemaDrakoshef",email = "artem125149@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "telethon (>=1.40.0,<2.0.0)"
+]
+
+[tool.poetry]
+packages = [{include = "chats_creator", from = "src"}]
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.12.8"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
