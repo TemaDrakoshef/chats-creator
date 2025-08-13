@@ -4,7 +4,14 @@ from pathlib import Path
 
 from telethon import TelegramClient
 
-from config import SESSION_NAME, TELEGRAM_API_HASH, TELEGRAM_API_ID
+from config import (
+    CHAT_ABOUT,
+    CHAT_TITLE,
+    MESSAGES,
+    SESSION_NAME,
+    TELEGRAM_API_HASH,
+    TELEGRAM_API_ID,
+)
 from src.logging import setup_logging
 from src.telegram import create_chat, send_message_to_chat
 
@@ -28,19 +35,16 @@ async def main():
     else:
         logger.info("%s: Софт успешно подключился к аккаунту", me.phone)
 
-    chat_title = "My chat"
-    chat_about = "This is my chat"
-    new_chat = await create_chat(client, chat_title, chat_about)
-
+    new_chat = await create_chat(client, CHAT_TITLE, CHAT_ABOUT)
     if new_chat:
-        message_content = "Привет всем!"
-        await send_message_to_chat(client, new_chat, message_content)
+        for message_content in MESSAGES:
+            await send_message_to_chat(client, new_chat, message_content)
+            asyncio.sleep(0.5)
     else:
         logger.info(
             "%s: Пропуск отправки сообщения, так как создание чата не удалось",
             me.phone,
         )
-
     logger.info("%s: Завершение работы", me.phone)
 
 
