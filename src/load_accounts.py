@@ -2,12 +2,11 @@ import asyncio
 import logging
 import os
 import shutil
-from uuid import uuid4
 from pathlib import Path
+from uuid import uuid4
 
-from src.opentele.td import TDesktop
 from src.opentele.api import UseCurrentSession
-
+from src.opentele.td import TDesktop
 
 logger = logging.getLogger(__name__)
 
