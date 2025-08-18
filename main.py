@@ -1,6 +1,7 @@
 import asyncio
 import logging
 import os
+import random
 from pathlib import Path
 
 from telethon import TelegramClient
@@ -8,7 +9,11 @@ from telethon import TelegramClient
 from config import (
     CHAT_ABOUT,
     CHAT_TITLE,
+    MAX_SLEEP_CHATS,
+    MAX_SLEEP_MESSAGE,
     MESSAGES,
+    MIN_SLEEP_CHATS,
+    MIN_SLEEP_MESSAGE,
     TELEGRAM_API_HASH,
     TELEGRAM_API_ID,
     TOTAL_CHATS,
@@ -63,7 +68,9 @@ async def main():
 
         chats_created = 0
         for _ in range(TOTAL_CHATS):
-            await asyncio.sleep(2.5)
+            await asyncio.sleep(
+                random.randint(MIN_SLEEP_CHATS, MAX_SLEEP_CHATS)
+            )
             new_chat = await create_chat(client, CHAT_TITLE, CHAT_ABOUT)
             if new_chat:
                 chats_created += 1
@@ -71,7 +78,9 @@ async def main():
                     await send_message_to_chat(
                         client, new_chat, message_content
                     )
-                    await asyncio.sleep(0.5)
+                    await asyncio.sleep(
+                        random.randint(MIN_SLEEP_MESSAGE, MAX_SLEEP_MESSAGE)
+                    )
             else:
                 logger.info(
                     "%s: Пропуск отправки сообщения, так как создание чата не удалось",
