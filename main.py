@@ -8,7 +8,7 @@ from telethon import TelegramClient
 
 from config import (
     CHAT_ABOUT,
-    CHAT_TITLE,
+    CHAT_TITLES,
     MAX_SLEEP_CHATS,
     MAX_SLEEP_MESSAGE,
     MESSAGES,
@@ -71,10 +71,12 @@ async def main():
             await asyncio.sleep(
                 random.randint(MIN_SLEEP_CHATS, MAX_SLEEP_CHATS)
             )
-            new_chat = await create_chat(client, CHAT_TITLE, CHAT_ABOUT)
+            title = random.choice(CHAT_TITLES)
+            new_chat = await create_chat(client, title, CHAT_ABOUT)
             if new_chat:
                 chats_created += 1
-                for message_content in MESSAGES:
+                messages_to_send = random.sample(MESSAGES, 3)
+                for message_content in messages_to_send:
                     await send_message_to_chat(
                         client, new_chat, message_content
                     )

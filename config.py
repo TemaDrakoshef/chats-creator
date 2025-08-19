@@ -7,6 +7,17 @@ MAX_SLEEP_CHATS = 120
 MIN_SLEEP_MESSAGE = 10
 MAX_SLEEP_MESSAGE = 60
 
-CHAT_TITLE = "My chat"
-CHAT_ABOUT = "This is my chat"
-MESSAGES = ["Привет!", "Как дела?", "Что делаешь?"]
+CHAT_TITLES = [
+    "My chat",
+    "Test chat"
+]
+CHAT_ABOUTS = [
+    "This is my chat",
+    "This is test chat",
+    "This is another test chat"
+]
+MESSAGES = [
+    "Привет!",
+    "Как дела?",
+    "Что делаешь?",
+]
